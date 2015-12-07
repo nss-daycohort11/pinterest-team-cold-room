@@ -6,10 +6,10 @@ app.config(["$routeProvider", function($routeProvider) {
 		templateUrl: 'app/partials/splash-page.html',
 		controller: 'loginCtrl'
 	})
-	// .when('/main-view', {
-	// 	templateUrl: 'app/partials/add-view.html',
-	// 	controller: 'addNewSongCtrl'
-	// })
+	.when('/main-page', {
+		templateUrl: 'app/partials/main-page.html',
+		controller: 'mainPageCtrl'
+	})
 	.otherwise('/login-page');
 
 }]);

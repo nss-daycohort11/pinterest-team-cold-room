@@ -1,24 +1,53 @@
 // login controller
-app.controller("loginCtrl", ["$scope", "$firebaseArray", function($scope, $firebaseArray) {
+app.controller("loginCtrl", ["$window", "$location", "$scope", "$firebaseAuth", function($window, $location, $scope, $firebaseAuth) {
 
-	$scope.ref = new Firebase("https://pinterest-cold-room.firebaseio.com/users");
+	var ref = new Firebase("https://pinterest-cold-room.firebaseio.com/users");
 
-	
-	
-	$scope.ref.$createUser({
-	  email: $scope.email,
-	  password: $scope.password
-	}).then(function(userData) {
-	  console.log("User " + userData.uid + " created successfully!");
+	$scope.ref = $firebaseAuth(ref);
 
-	  return $scope.ref.$authWithPassword({
-	    email: $scope.email,
-	    password: $scope.password
-	  });
-	}).then(function(authData) {
+	var authData = $scope.ref.$getAuth();
+
+	if (authData) {
 	  console.log("Logged in as:", authData.uid);
-	}).catch(function(error) {
-	  console.error("Error: ", error);
-	});
+	  $location.path('/main-page').replace();
+	} else {
+	  console.log("Logged out");
+	}
+		
+
+	$scope.registerUser = function() {
+		var userObj = {
+			email: $scope.email,
+			password: $scope.password
+		};
+		console.log("userObj", userObj);
+
+		$scope.ref.$createUser(userObj)
+		.then(function(userData) {
+		  console.log("User " + userData.uid + " created successfully!");
+		  return $scope.ref.$authWithPassword(userObj);
+		}).then(function(authData) {
+		  console.log("Logged in as:", authData.uid);
+		  $location.path('/main-page').replace();
+		}).catch(function(error) {
+		  console.error("Error: ", error);
+		});
+	}
+
+	$scope.login = function() {
+		var userObj = {
+			email: $scope.email,
+			password: $scope.password
+		};
+
+		$scope.ref.$authWithPassword(userObj)
+		.then(function(authData) {
+		  console.log("Logged in as:", authData.uid);
+		  $location.path('/main-page').replace();
+		}).catch(function(error) {
+		  console.error("Error: ", error);
+		});;
+	}
+
 
 }]);
