@@ -7,7 +7,7 @@
   ],
   "license": "MIT",
   "moduleType": [],
-  "homepage": "",
+  "homepage": "https://github.com/nss-daycohort11/pinterest-team-cold-room",
   "ignore": [
     "**/.*",
     "node_modules",
