@@ -12,6 +12,7 @@ app.controller("loginCtrl", ["$window", "$location", "$scope", "$firebaseAuth", 
 	  $location.path('/main-page').replace();
 	} else {
 	  console.log("Logged out");
+	  $location.path('/login-page').replace();
 	}
 		
 

@@ -1,6 +1,7 @@
-var app = angular.module("PinterestApp", ["ui.bootstrap", "firebase", "ngRoute"]);
+var app = angular.module("PinterestApp", ["ui.bootstrap", "firebase", "ngRoute", 'angular-embedly']);
 
-app.config(["$routeProvider", function($routeProvider) {
+app.config(["$routeProvider", "embedlyServiceProvider", function($routeProvider, embedlyServiceProvider) {
+
 	$routeProvider
 	.when('/login-page', {
 		templateUrl: 'app/partials/splash-page.html',
