@@ -1,5 +1,5 @@
 // login controller
-app.controller("loginCtrl", ["$scope", "$firebaseArray", function($scope, $firebaseArray) {
+app.controller("loginCtrl", ["$scope", "$firebaseAuth", function($scope, $firebaseAuth) {
 
 	$scope.ref = new Firebase("https://pinterest-cold-room.firebaseio.com/users");
 
