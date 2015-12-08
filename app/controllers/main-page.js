@@ -1,6 +1,7 @@
 // main page
-app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseAuth", "$state", "$masonry",
-	function($http, $scope, $firebaseArray, $firebaseAuth, $state, $masonry) {
+app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseAuth", "$state",
+	function($http, $scope, $firebaseArray, $firebaseAuth, $state) {
+
 
 	// create new firebase ref at their uid location
 	var refUrl = "https://pinterest-cold-room.firebaseio.com/users/" + $scope.$parent.userAuthData.uid;
@@ -26,7 +27,6 @@ app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseA
 	$scope.uploadPin = function() {
 		$scope.urlToSearch = $scope.url;
 		console.log("url", $scope.url);
-
 		$http.get("http://api.embed.ly/1/extract?key=514b5e76363e48c7892110e2bd33a491&url=" + $scope.urlToSearch + "&maxwidth=500")
 		.then(function(data) {
 			console.log("data", data);
