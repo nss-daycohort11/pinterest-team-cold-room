@@ -1,4 +1,4 @@
-var app = angular.module("PinterestApp", ["ui.bootstrap", "firebase", "ui.router"]);
+var app = angular.module("PinterestApp", ["ui.bootstrap", "firebase", "ui.router", "wu.masonry"]);
 
 
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -18,6 +18,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     .state('main-page.content', {
       url: "/main-page-content",
-      templateUrl: "app/partials/main-page.content.html"
+      templateUrl: "app/partials/main-page.content.html",
+      controller: "mainPageCtrl"
     });
 });
