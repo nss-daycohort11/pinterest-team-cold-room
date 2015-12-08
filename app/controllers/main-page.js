@@ -8,14 +8,15 @@ app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseA
 	userRef = $firebaseArray(userRef);
 
 	// create new firebase ref to add to content collection
-	var pinsRef = new Firebase("https://pinterest-cold-room.firebaseio.com/allpins/");
-	pinsRef = $firebaseArray(pinsRef);
+	var allPinsRef = new Firebase("https://pinterest-cold-room.firebaseio.com/allpins/");
+	var pinsRef = $firebaseArray(allPinsRef);
 
 	//create new firebase ref to add to favorites collection under user id
 	favesRef = refUrl + "/favorites";
 	var favPinsRef = new Firebase(favesRef);
 	favPinsRef = $firebaseArray(favPinsRef);
 
+	// add pin to favourites
 	$scope.uploadFavsPin = function(pinKey) {
 		favPinsRef.$add(pinKey)
 			.then(function(refinfo) {
@@ -24,17 +25,36 @@ app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseA
 	};
 
 	$scope.allpins = pinsRef;
-
+	console.log("pins ref", pinsRef);
+	
+	// logout function
 	$scope.logout = function() {
 		$scope.$parent.ref.$unauth();
 		console.log("logging user out");
 		$state.go("login-page");
 	};
 
+
+	// search in nav bar
 	$scope.submitSearch = function() {
 		console.log("you clicked submit search");
-	};
+		$scope.filtered = [];
+		$state.go("main-page.searched-view");
 
+		allPinsRef.on("value", function(snapshot) {
+			var pinCollectionRef = snapshot.val();
+			$scope.filtered = _.filter(pinCollectionRef, function(obj) {
+				if (_.includes(obj.title.toLowerCase(), $scope.searchAllPins.toLowerCase())) {
+					console.log("obj includes", obj.title);
+					return obj;
+				}
+			});
+			console.log("FilteredArray", $scope.filtered);
+		});
+
+	}; //-- end submitSearch()
+
+	// upload a new pin
 	$scope.uploadPin = function() {
 		$scope.urlToSearch = $scope.url;
 		console.log("url", $scope.url);

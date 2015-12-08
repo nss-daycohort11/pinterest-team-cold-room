@@ -1,7 +1,7 @@
 
 <div id="wrapper">
 	<div id="columns">
-		<div class="pin" ng-repeat="pins in allpins">
+		<div class="pin" ng-repeat="pins in filtered">
 			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#{{pins.$id}}">
 				<img src="{{pins.images[0].url}}" />
 			</button>

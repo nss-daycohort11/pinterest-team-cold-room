@@ -19,5 +19,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/main-page-content",
       templateUrl: "app/partials/main-page.content.html",
       controller: "mainPageCtrl"
+    })
+    .state('main-page.searched-view', {
+    	url: "/main-page-search",
+    	templateUrl: "app/partials/main-page.searched-view.html",
+    	controller: "mainPageCtrl"
     });
 });
