@@ -1,16 +1,23 @@
-var app = angular.module("PinterestApp", ["ui.bootstrap", "firebase", "ngRoute"]);
+var app = angular.module("PinterestApp", ["ui.bootstrap", "firebase", "ui.router"]);
 
-app.config(["$routeProvider", function($routeProvider) {
 
-	$routeProvider
-	.when('/login-page', {
-		templateUrl: 'app/partials/splash-page.html',
-		controller: 'loginCtrl'
-	})
-	.when('/main-page', {
-		templateUrl: 'app/partials/main-page.html',
-		controller: 'mainPageCtrl'
-	})
-	.otherwise('/login-page');
+app.config(function($stateProvider, $urlRouterProvider) {
 
-}]);
+  $urlRouterProvider.otherwise("/login-page");
+
+  $stateProvider
+    .state('login-page', {
+      url: "/login-page",
+      templateUrl: "app/partials/splash-page.html",
+      controller: "loginCtrl"
+    })
+    .state('main-page', {
+      url: "/main-page",
+      templateUrl: "app/partials/main-page.html",
+      controller: "mainPageCtrl"
+    })
+    .state('main-page.content', {
+      url: "/main-page-content",
+      templateUrl: "app/partials/main-page.content.html"
+    });
+});

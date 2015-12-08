@@ -8,23 +8,32 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Pinterest</a>
+          <!-- <a class="navbar-brand" href="#">Pinterest</a> -->
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search" ng-model="searchitems">
+            <div class="input-group">
+              <div class="input-group-addon">Pinterest</div>
+                <input type="text" class="form-control" id="exampleInputAmount" placeholder="Search" ng-model="searchitems" size="45">
+              <!-- <div class="input-group-addon">x</div> -->
             </div>
-            <button ng-click="submitSearch()" class="btn btn-default">Submit</button>
+            <button ng-click="submitSearch()" class="btn btn-default" ui-sref="main-page.content">Submit</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Username</a></li>
+            <li><button ng-click="logout()" class="btn btn-default">Logout</button></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+
+
+    <div ui-view></div>
+
+
+
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-lg add-pin-btn" data-toggle="modal" data-target="#myModal">
@@ -40,7 +49,7 @@
             <h4 class="modal-title" id="myModalLabel">Upload a Pin</h4>
           </div>
           <div class="modal-body">
-            <input type="text" placeholder="Insert Url" ng-model="url">
+            <input type="text" class="form-control" placeholder="Add url" ng-model="url" size="30">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" ng-click="uploadPin()">Save</button>

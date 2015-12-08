@@ -15,4 +15,8 @@
   bottom: 20px;
   right: 10px; }
 
+input {
+  border-radius: 4px;
+  border: 2px solid lightgrey; }
+
 /*# sourceMappingURL=main.css.map */
