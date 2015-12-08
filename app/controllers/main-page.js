@@ -1,6 +1,8 @@
 // main page
-app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseAuth", "$state",
-	function($http, $scope, $firebaseArray, $firebaseAuth, $state) {
+app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseAuth", "$state", "$location",
+	function($http, $scope, $firebaseArray, $firebaseAuth, $state, $location) {
+
+	console.log("$state>>>>>>>", $state.get())
 
 	// create new firebase ref at their uid location
 	var refUrl = "https://pinterest-cold-room.firebaseio.com/users/" + $scope.$parent.userAuthData.uid;
@@ -26,7 +28,7 @@ app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseA
 
 	$scope.allpins = pinsRef;
 	console.log("pins ref", pinsRef);
-	
+
 	// logout function
 	$scope.logout = function() {
 		$scope.$parent.ref.$unauth();
@@ -34,25 +36,24 @@ app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseA
 		$state.go("login-page");
 	};
 
-
 	// search in nav bar
 	$scope.submitSearch = function() {
 		console.log("you clicked submit search");
-		$scope.filtered = [];
-		$state.go("main-page.searched-view");
 
-		allPinsRef.on("value", function(snapshot) {
-			var pinCollectionRef = snapshot.val();
-			$scope.filtered = _.filter(pinCollectionRef, function(obj) {
-				if (_.includes(obj.title.toLowerCase(), $scope.searchAllPins.toLowerCase())) {
-					console.log("obj includes", obj.title);
-					return obj;
-				}
-			});
-			console.log("FilteredArray", $scope.filtered);
+		$scope.filtered = _.filter(pinsRef, function(obj) {
+			if (_.includes(obj.title.toLowerCase(), $scope.searchAllPins.toLowerCase())) {
+				console.log("obj includes", obj.title);
+				return obj;
+			}
 		});
+		// $location.path('/main-page/main-page-search')
+		$state.transitionTo("main-page.searched-view");
+		console.log("FilteredArray", $scope.filtered);
 
 	}; //-- end submitSearch()
+
+
+
 
 	// upload a new pin
 	$scope.uploadPin = function() {

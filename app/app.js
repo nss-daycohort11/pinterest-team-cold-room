@@ -23,6 +23,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('main-page.searched-view', {
     	url: "/main-page-search",
     	templateUrl: "app/partials/main-page.searched-view.html",
-    	controller: "mainPageCtrl"
+    	// controller: "mainPageCtrl"
     });
 });
+
+// app.run(function($location){
+// 	console.log("location", $location.path())
+
+// })

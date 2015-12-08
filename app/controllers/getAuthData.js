@@ -1,4 +1,5 @@
-app.controller("getAuthData", ["$location", "$scope", "$firebaseAuth", function($location, $scope, $firebaseAuth) {
+app.controller("getAuthData", ["$location", "$scope", "$firebaseAuth", "$state", 
+	function($location, $scope, $firebaseAuth, $state) {
 
 	var ref = new Firebase("https://pinterest-cold-room.firebaseio.com/users");
 
@@ -10,7 +11,7 @@ app.controller("getAuthData", ["$location", "$scope", "$firebaseAuth", function(
 
 	if (authData) {
 	  console.log("Logged in as:", authData.uid);
-	  $location.path('/main-page/main-page-content').replace();
+	  $state.go('main-page.content');
 	} else {
 	  console.log("Logged out");
 	  $location.path('/login-page').replace();
