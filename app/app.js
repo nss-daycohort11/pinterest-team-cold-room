@@ -1,6 +1,5 @@
 var app = angular.module("PinterestApp", ["ui.bootstrap", "firebase", "ui.router"]);
 
-
 app.config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise("/login-page");

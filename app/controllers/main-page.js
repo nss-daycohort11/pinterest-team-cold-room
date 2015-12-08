@@ -2,7 +2,6 @@
 app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseAuth", "$state",
 	function($http, $scope, $firebaseArray, $firebaseAuth, $state) {
 
-
 	// create new firebase ref at their uid location
 	var refUrl = "https://pinterest-cold-room.firebaseio.com/users/" + $scope.$parent.userAuthData.uid;
 	var userRef = new Firebase(refUrl);
@@ -11,6 +10,18 @@ app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseA
 	// create new firebase ref to add to content collection
 	var pinsRef = new Firebase("https://pinterest-cold-room.firebaseio.com/allpins/");
 	pinsRef = $firebaseArray(pinsRef);
+
+	//create new firebase ref to add to favorites collection under user id
+	favesRef = refUrl + "/favorites";
+	var favPinsRef = new Firebase(favesRef);
+	favPinsRef = $firebaseArray(favPinsRef);
+
+	$scope.uploadFavsPin = function(pinKey) {
+		favPinsRef.$add(pinKey)
+			.then(function(refinfo) {
+			console.log("what??", refinfo);	
+		});
+	};
 
 	$scope.allpins = pinsRef;
 

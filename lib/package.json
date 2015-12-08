@@ -16,5 +16,8 @@
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "angular-ui-router": "^0.2.15"
+  }
 }
