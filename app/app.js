@@ -1,4 +1,4 @@
-var app = angular.module("PinterestApp", ["ui.bootstrap", "firebase", "ui.router", "wu.masonry"]);
+var app = angular.module("PinterestApp", ["ui.bootstrap", "firebase", "ui.router"]); //"wu.masonry"]);
 
 
 app.config(function($stateProvider, $urlRouterProvider) {

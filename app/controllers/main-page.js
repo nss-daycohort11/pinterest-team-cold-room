@@ -1,6 +1,6 @@
 // main page
-app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseAuth", "$state", "$masonry",
-	function($http, $scope, $firebaseArray, $firebaseAuth, $state, $masonry) {
+app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseAuth", "$state",
+	function($http, $scope, $firebaseArray, $firebaseAuth, $state) {
 
 	// create new firebase ref at their uid location
 	var refUrl = "https://pinterest-cold-room.firebaseio.com/users/" + $scope.$parent.userAuthData.uid;

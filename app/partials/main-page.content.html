@@ -1,9 +1,10 @@
-<div masonry>
+<div>
 
 <!-- 	<h1>{{pins.title}}</h1>
 	<p>{{pins.description}}</p> -->
-	    <div class="masonry-brick" ng-repeat="pins in allpins">
-	        <img ng-src="{{ pins.images[0].url }}" alt="A masonry brick">
+	    <div ng-repeat="pins in allpins">
+	        <img ng-src="{{ pins.images[0].url }}">
+	        <p>{{pins.title}}</p>
 	    </div>
 
 </div>
