@@ -15,15 +15,17 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <form class="navbar-form navbar-left" role="search">
             <div class="input-group">
-              <div class="input-group-addon">Pinterest</div>
+              <div class="input-group-addon" ng-click="goToMainView()" style="cursor:pointer">Pinterest</div>
                 <input type="text" class="form-control" ng-model="searchAllPins" placeholder="Search" ng-model="searchitems" size="45">
               <!-- <div class="input-group-addon">x</div> -->
             </div>
             <button ng-click="submitSearch()" class="btn btn-default" >Submit</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Username</a></li>
-            <li><button ng-click="logout()" class="btn btn-default">Logout</button></li>
+     <!--        <li>
+              <button ng-click="userProfile()" class="btn btn-default" style="margin:7px 5px 0 0" ng-model="$parent.nameOfUser">Username</button>
+            </li> -->
+            <li><button ng-click="logout()" class="btn btn-default" style="margin-top:7px">Logout</button></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -50,6 +52,7 @@
           </div>
           <div class="modal-body">
             <input type="text" class="form-control" placeholder="Add url" ng-model="url" size="30">
+            <input type="text" class="form-control" placeholder="Choose board" ng-model="boardName" size="30">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" ng-click="uploadPin()">Save</button>

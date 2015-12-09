@@ -20,10 +20,19 @@
 }
 
 .modal-pic {
-	height: 100px;
 	width:200px;
 }
 
+.btn-primary {
+	background-color:white;
+	border-color: black;
+	color: black;
+}
+
+.pin{
+	border-radius:5px;
+	background:lightgrey;
+}
 .favorites-btn {
 
 }
@@ -105,3 +114,6 @@ body {
 		column-count: 5;
 	}
 }
+
+// form styles
+

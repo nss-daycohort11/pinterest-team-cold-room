@@ -10,6 +10,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: "app/partials/splash-page.html",
       controller: "loginCtrl"
     })
+    .state('update-profile', {
+      url: "/update-profile",
+      templateUrl: "app/partials/update-profile.html",
+      controller: "loginCtrl"
+    })
     .state('main-page', {
       url: "/main-page",
       templateUrl: "app/partials/main-page.html",
@@ -24,10 +29,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
     	url: "/main-page-search",
     	templateUrl: "app/partials/main-page.searched-view.html",
     	// controller: "mainPageCtrl"
+    })
+    .state('main-page.user-profile', {
+    	url: "/user-profile",
+    	templateUrl: "app/partials/main-page.user-profile.html"
     });
 });
-
-// app.run(function($location){
-// 	console.log("location", $location.path())
-
-// })

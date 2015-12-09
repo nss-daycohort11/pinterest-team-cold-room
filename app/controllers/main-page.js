@@ -2,32 +2,40 @@
 app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseAuth", "$state", "$location",
 	function($http, $scope, $firebaseArray, $firebaseAuth, $state, $location) {
 
-	console.log("$state>>>>>>>", $state.get())
-
 	// create new firebase ref at their uid location
-	var refUrl = "https://pinterest-cold-room.firebaseio.com/users/" + $scope.$parent.userAuthData.uid;
-	var userRef = new Firebase(refUrl);
-	userRef = $firebaseArray(userRef);
+	var userRefUrl = "https://pinterest-cold-room.firebaseio.com/users/" + $scope.$parent.userAuthData.uid;
+	var globalUserRef = new Firebase(userRefUrl);
+	globalUserRef = $firebaseArray(globalUserRef);
+
 
 	// create new firebase ref to add to content collection
 	var allPinsRef = new Firebase("https://pinterest-cold-room.firebaseio.com/allpins/");
 	var pinsRef = $firebaseArray(allPinsRef);
 
-	//create new firebase ref to add to favorites collection under user id
-	favesRef = refUrl + "/favorites";
-	var favPinsRef = new Firebase(favesRef);
-	favPinsRef = $firebaseArray(favPinsRef);
-
 	// add pin to favourites
-	$scope.uploadFavsPin = function(pinKey) {
-		favPinsRef.$add(pinKey)
-			.then(function(refinfo) {
-			console.log("what??", refinfo);	
+	$scope.addPinToBoard = function(pinKey) {
+		// create new firebase ref at their uid and board location
+		var refUrl = "https://pinterest-cold-room.firebaseio.com/users/" + $scope.$parent.userAuthData.uid + "/" + $scope.boardName;
+		var userRef = new Firebase(refUrl);
+		userRef = $firebaseArray(userRef);
+
+		userRef.$add(pinKey)
+		.then(function(refinfo) {
+			console.log("refinfo", refinfo);
 		});
 	};
 
+	// Pinterest button in nav bar to go back to main view
+	$scope.goToMainView = function() {
+		$state.go('main-page.content');
+	};
+
+
 	$scope.allpins = pinsRef;
 	console.log("pins ref", pinsRef);
+
+	$scope.nameOfUser = globalUserRef.$value;
+	console.log("name of user", globalUserRef);
 
 	// logout function
 	$scope.logout = function() {
@@ -55,8 +63,13 @@ app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseA
 
 
 
-	// upload a new pin
+	// ----------- upload a new pin ------------ //
 	$scope.uploadPin = function() {
+		// create new firebase ref at their uid and board location
+		var refUrl = "https://pinterest-cold-room.firebaseio.com/users/" + $scope.$parent.userAuthData.uid + "/" + $scope.boardName;
+		var userRef = new Firebase(refUrl);
+		userRef = $firebaseArray(userRef);
+
 		$scope.urlToSearch = $scope.url;
 		console.log("url", $scope.url);
 		$http.get("http://api.embed.ly/1/extract?key=514b5e76363e48c7892110e2bd33a491&url=" + $scope.urlToSearch + "&maxwidth=500")
@@ -81,4 +94,16 @@ app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseA
 		});
 	};
 
-}]);
+
+	// ----------- view user profile ------------ //
+	$scope.userProfile = function() {
+
+		$state.go("main-page.user-profile");
+	};
+
+
+
+}]); // ------- END APP CONTROLLER
+
+
+

@@ -16,8 +16,16 @@
   right: 10px; }
 
 .modal-pic {
-  height: 100px;
   width: 200px; }
+
+.btn-primary {
+  background-color: white;
+  border-color: black;
+  color: black; }
+
+.pin {
+  border-radius: 5px;
+  background: lightgrey; }
 
 input {
   border-radius: 4px;
