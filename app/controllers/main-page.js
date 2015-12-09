@@ -15,7 +15,7 @@ app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseA
 	// add pin to favourites
 	$scope.addPinToBoard = function(pinKey) {
 		// create new firebase ref at their uid and board location
-		var refUrl = "https://pinterest-cold-room.firebaseio.com/users/" + $scope.$parent.userAuthData.uid + "/" + $scope.boardName;
+		var refUrl = "https://pinterest-cold-room.firebaseio.com/users/" + $scope.$parent.userAuthData.uid + "/favourites";
 		var userRef = new Firebase(refUrl);
 		userRef = $firebaseArray(userRef);
 
