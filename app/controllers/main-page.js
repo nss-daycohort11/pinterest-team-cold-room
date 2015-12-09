@@ -12,16 +12,16 @@ app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseA
 	pinsRef = $firebaseArray(pinsRef);
 
 	//create new firebase ref to add to favorites collection under user id
-	favesRef = refUrl + "/favorites";
+	favesRef = refUrl + "/" + $scope.boardName;
 	var favPinsRef = new Firebase(favesRef);
 	favPinsRef = $firebaseArray(favPinsRef);
 
-	$scope.uploadFavsPin = function(pinKey) {
-		favPinsRef.$add(pinKey)
-			.then(function(refinfo) {
-			console.log("what??", refinfo);	
-		});
-	};
+	// $scope.uploadFavsPin = function(pinKey) {
+	// 	favPinsRef.$add(pinKey)
+	// 		.then(function(refinfo) {
+	// 		console.log("what??", refinfo);	
+	// 	});
+	// };
 
 	$scope.allpins = pinsRef;
 
