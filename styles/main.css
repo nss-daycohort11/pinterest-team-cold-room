@@ -4,8 +4,15 @@
 #login-background {
   text-align: center; }
 
+.header {
+  font-family: Lobster;
+  margin-top: 100px; }
+
+.headertext {
+  font-size: 70px; }
+
 .vertical-align {
-  margin-top: 20%; }
+  margin-top: 8%; }
 
 .add-pin-btn {
   border-radius: 50%;
