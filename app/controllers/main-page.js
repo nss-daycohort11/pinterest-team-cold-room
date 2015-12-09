@@ -13,18 +13,19 @@ app.controller("mainPageCtrl", ["$http", "$scope", "$firebaseArray", "$firebaseA
 	var allPinsRef = new Firebase("https://pinterest-cold-room.firebaseio.com/allpins/");
 	var pinsRef = $firebaseArray(allPinsRef);
 
-	//create new firebase ref to add to favorites collection under user id
-	favesRef = refUrl + "/favorites";
-	var favPinsRef = new Firebase(favesRef);
-	favPinsRef = $firebaseArray(favPinsRef);
+	//create new firebase ref to add to board collection under user id
+	// favesRef = refUrl + "/" + $.scope.boardName;
+	// var favPinsRef = new Firebase(favesRef);
+	// favPinsRef = $firebaseArray(favPinsRef);
 
 	// add pin to favourites
-	$scope.uploadFavsPin = function(pinKey) {
-		favPinsRef.$add(pinKey)
-			.then(function(refinfo) {
-			console.log("what??", refinfo);	
-		});
-	};
+	// $scope.uploadFavsPin = function(pinKey) {
+	// 	favPinsRef.$add(pinKey)
+	// 		.then(function(refinfo) {
+	// 		console.log("what??", refinfo);	
+	// 	});
+	// };
+
 
 	$scope.allpins = pinsRef;
 	console.log("pins ref", pinsRef);

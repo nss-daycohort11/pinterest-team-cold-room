@@ -1,6 +1,7 @@
 * {
   font-family: "Source Sans Pro", sans-serif; }
 
+
 #login-background {
   text-align: center; }
 
@@ -15,8 +16,18 @@
   bottom: 20px;
   right: 10px; }
 
+.btn-primary {
+  background-color: white;
+  border-color: white;
+  color: black;
+}
+
+.pin{
+  border-radius: 5px;
+  background: lightgrey;
+}
+
 .modal-pic {
-  height: 100px;
   width: 200px; }
 
 input {
